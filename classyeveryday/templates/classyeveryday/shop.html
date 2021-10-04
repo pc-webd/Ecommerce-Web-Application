@@ -1,0 +1,381 @@
+{% extends "classyeveryday/basetemp.html" %}
+{%block style%}
+        .pagination {
+            display: inline-block;
+        }
+        
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+            font-size: 22px;
+        }
+        .pagination a.active {
+            background-color: #0a0809;
+            color: white;
+            border: 1px solid #4CAF50;
+          }
+{%endblock style %}
+{% block content%}
+   {% load static %}
+
+    <!--Body Content-->
+    <div id="page-content">
+    	<!--Collection Banner-->
+    	<div class="collection-header">
+			<div class="collection-hero">
+        		<div class="collection-hero__image"><img class="blur-up lazyload" data-src="{% static 'images/cat-women2.jpg' %}" src="{% static 'images/cat-women2.jpg'%}" alt="Women" title="Women" /></div>
+        		<div class="collection-hero__title-wrapper"><h1 class="collection-hero__title page-width">Shop</h1></div>
+      		</div>
+		</div>
+        <!--End Collection Banner-->
+        
+        <div class="container-fluid">
+            <br>
+        	<div class="row">
+            	<!--Sidebar-->
+            	<div class="col-12 col-sm-12 col-md-3 col-lg-2 sidebar filterbar">
+                	<div class="closeFilter d-block d-md-none d-lg-none"><i class="icon icon anm anm-times-l"></i></div>
+                        <div class="sidebar_tags">
+                            <!--Categories-->
+                            <div class="sidebar_widget categories filter-widget">
+                                <div class="widget-title"><h2>Categories</h2></div>
+                                <div class="widget-content">
+                                    <ul class="sidebar_categories">
+                                        <li class="level1 sub-level"><a href="#;" class="site-nav">Clothing</a>
+                                            <ul class="sublinks">
+                                                <li class="level2"><a href="#;" class="site-nav">Men</a></li>
+                                                <li class="level2"><a href="#;" class="site-nav">Women</a></li>
+                                                <li class="level2"><a href="#;" class="site-nav">Child</a></li>
+                                                <li class="level2"><a href="#;" class="site-nav">View All Clothing</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="level1 sub-level"><a href="#;" class="site-nav">Jewellery</a>
+                                            <ul class="sublinks">
+                                                <li class="level2"><a href="#;" class="site-nav">Ring</a></li>
+                                                <li class="level2"><a href="#;" class="site-nav">Neckalses</a></li>
+                                                <li class="level2"><a href="#;" class="site-nav">Eaarings</a></li>
+                                                <li class="level2"><a href="#;" class="site-nav">View All Jewellery</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="lvl-1"><a href="#;" class="site-nav">Shoes</a></li>
+                                        <li class="lvl-1"><a href="#;" class="site-nav">Accessories</a></li>
+                                        <li class="lvl-1"><a href="#;" class="site-nav">Collections</a></li>
+                                        <li class="lvl-1"><a href="#;" class="site-nav">Sale</a></li>
+                                        <li class="lvl-1"><a href="#;" class="site-nav">Page</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--Categories-->
+                            <!--Price Filter-->
+                            <div class="sidebar_widget filterBox filter-widget">
+                                <div class="widget-title">
+                                    <h2>Price</h2>
+                                </div>
+                                <form action="#" method="post" class="price-filter">
+                                    <div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p class="no-margin"><input id="amount" type="text"></p>
+                                        </div>
+                                        <div class="col-6 text-right margin-25px-top">
+                                            <button class="btn btn-secondary btn--small">filter</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--End Price Filter-->
+                            <!--Size Swatches-->
+                            <div class="sidebar_widget filterBox filter-widget size-swacthes">
+                                <div class="widget-title"><h2>Size</h2></div>
+                                <div class="filter-color swacth-list">
+                                    <ul>
+                                        <li><span class="swacth-btn checked">X</span></li>
+                                        <li><span class="swacth-btn">XL</span></li>
+                                        <li><span class="swacth-btn">XLL</span></li>
+                                        <li><span class="swacth-btn">M</span></li>
+                                        <li><span class="swacth-btn">L</span></li>
+                                        <li><span class="swacth-btn">S</span></li>
+                                        <li><span class="swacth-btn">XXXL</span></li>
+                                        <li><span class="swacth-btn">XXL</span></li>
+                                        <li><span class="swacth-btn">XS</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--End Size Swatches-->
+                            <!--Color Swatches-->
+                            <div class="sidebar_widget filterBox filter-widget">
+                                <div class="widget-title"><h2>Color</h2></div>
+                                <div class="filter-color swacth-list clearfix">
+                                    <span class="swacth-btn black"></span>
+                                    <span class="swacth-btn white checked"></span>
+                                    <span class="swacth-btn red"></span>
+                                    <span class="swacth-btn blue"></span>
+                                    <span class="swacth-btn pink"></span>
+                                    <span class="swacth-btn gray"></span>
+                                    <span class="swacth-btn green"></span>
+                                    <span class="swacth-btn orange"></span>
+                                    <span class="swacth-btn yellow"></span>
+                                    <span class="swacth-btn blueviolet"></span>
+                                    <span class="swacth-btn brown"></span>
+                                    <span class="swacth-btn darkGoldenRod"></span>
+                                    <span class="swacth-btn darkGreen"></span>
+                                    <span class="swacth-btn darkRed"></span>
+                                    <span class="swacth-btn dimGrey"></span>
+                                    <span class="swacth-btn khaki"></span>
+                                </div>
+                            </div>
+                            <!--End Color Swatches-->
+
+                        </div>
+                </div>
+                <!--End Sidebar-->
+                <!--Main Content-->
+                <div class="col-12 col-sm-12 col-md-9 col-lg-10 main-col">
+                	<div class="productList">
+                    	<!--Toolbar-->
+                        <button type="button" class="btn btn-filter d-block d-md-none d-lg-none"> Product Filters</button>
+                    	<!--<div class="toolbar">
+                        	<div class="filters-toolbar-wrapper">
+                            	<div class="row">
+                                	<div class="col-4 col-md-4 col-lg-4 filters-toolbar__item collection-view-as d-flex justify-content-start align-items-center">
+                                    	<a href="shop-left-sidebar.html" title="Grid View" class="change-view change-view--active">
+                                        	<img src="{% static 'images/grid.jpg'%}" alt="Grid" />
+                                        </a>
+                                        <a href="shop-listview.html" title="List View" class="change-view">
+                                        	<img src="{% static 'images/list.jpg'%}" alt="List" />
+                                        </a>
+                                    </div>
+                                    <div class="col-4 col-md-4 col-lg-4 text-center filters-toolbar__item filters-toolbar__item--count d-flex justify-content-center align-items-center">
+                                    	<span class="filters-toolbar__product-count">Showing: 22</span>
+                                    </div>
+                                    <div class="col-4 col-md-4 col-lg-4 text-right">
+                                    	<div class="filters-toolbar__item">
+                                      		<label for="SortBy" class="hidden">Sort</label>
+                                      		<select name="SortBy" id="SortBy" class="filters-toolbar__input filters-toolbar__input--sort">
+                                                <option value="title-ascending" selected="selected">Sort</option>
+                                                <option>Best Selling</option>
+                                                <option>Alphabetically, A-Z</option>
+                                                <option>Alphabetically, Z-A</option>
+                                                <option>Price, low to high</option>
+                                                <option>Price, high to low</option>
+                                                <option>Date, new to old</option>
+                                                <option>Date, old to new</option>
+                                      		</select>
+                                      		<input class="collection-header__default-sort" type="hidden" value="manual">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--End Toolbar-->
+                        <div class="grid-products grid--view-items">
+                            <div class="row">
+                                {% for a in items %}
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-3 grid-view-item style2 item">
+                                	<div class="grid-view_image">
+                                        <!-- start product image -->
+                                        <a href="{{a.get_absolute_url}}" class="grid-view-item__link">
+                                            <!-- image -->
+                                            <img class="grid-view-item__image primary blur-up lazyload" data-src="{{a.productimage.url}}" src="{{a.productimage.url}}" alt="image" title="product">
+                                            <!-- End image -->
+                                            <!-- Hover image -->
+                                            <img class="grid-view-item__image hover blur-up lazyload" data-src="{{a.productimage.url}}" src="{{a.productimage.url}}" alt="image" title="product">
+                                            <!-- End hover image -->
+                                            <!-- product label
+                                            <div class="product-labels rectangular"><span class="lbl on-sale">-16%</span> <span class="lbl pr-label1">new</span></div>
+                                            End product label -->
+                                        </a>
+                                        <!-- end product image -->
+                                        
+                                        <!--start product details -->
+                                        <div class="product-details hoverDetails text-center mobile">
+                                            <!-- product name -->
+                                            <div class="product-name">
+                                                <a href="{{a.get_absolute_url}}">{{a.title}}</a>
+                                            </div>
+                                            <!-- End product name -->
+                                            <!-- product price -->
+                                            <div class="product-price">
+                                                {% if a.price != a.discount_price %}
+                                                    <span class="old-price">Rs. {{a.price}}</span>
+                                                {%endif%}
+
+                                                <span class="price">Rs. {{a.discount_price}}</span>
+                                            </div>
+                                            <!-- End product price
+                                            <div class="product-review">
+                                                <i class="font-13 fa fa-star"></i>
+                                                <i class="font-13 fa fa-star"></i>
+                                                <i class="font-13 fa fa-star"></i>
+                                                <i class="font-13 fa fa-star-o"></i>
+                                                <i class="font-13 fa fa-star-o"></i>
+                                            </div>-->
+                                            <!-- product button -->
+                                            <div class="button-set">
+                                                <a href="" title="Quick View" class="quick-view-popup quick-view" tabindex="0" data-toggle="modal" data-target="#{{a.slug}}">
+                                                	<i class="icon anm anm-search-plus-r"></i>
+                                            	</a>
+                                                <!-- Start product button -->
+                                                <form action="#" method="post" data-toggle="modal" data-target="#{{a.slug}}">
+                                                    <button class="btn btn--secondary cartIcon btn-addto-cart" type="button"><i class="icon anm anm-bag-l"></i></button>
+                                                </form>
+                                                <div class="wishlist-btn">
+                                                    <a class="wishlist add-to-wishlist" href="{{a.get_add_to_wishlist_url}}" title="Add to Wishlist">
+                                                        <i class="icon anm anm-heart-l"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <!-- end product button -->
+                                        </div>
+                                        <!-- End product details -->
+                                    </div>
+                                </div>
+                                <div id="quick">
+                                    <div class="modal fade quick-view-popup quickView" id="{{a.slug}}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content" style="border:0;padding:25px">
+                                            <div class="modal-body" style="border:0; padding:0;">
+                                                <div id="ProductSection-product-template" class="product-template__container prstyle1">
+                                            <div class="product-single">
+                                            <!-- Start model close -->
+                                            <a href="javascript:void()" data-dismiss="modal" class="model-close-btn pull-right"
+                                               title="close"><span class="icon icon anm anm-times-l"></span></a>
+                                            <!-- End model close -->
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                    <div class="product-details-img">
+                                                        <div class="pl-20">
+                                                            <img src="{{a.productimage.url}}" alt="" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                    <div class="product-single__meta">
+                                                            <h2 class="product-single__title">{{a.title}}</h2>
+                                                            <div class="prInfoRow">
+                                                                <div class="product-stock"> <span class="instock ">In Stock</span> <span class="outstock hide">Unavailable</span> </div>
+                                                            </div>
+                                                            <p class="product-single__price product-single__price-product-template">
+                                                                <span class="visually-hidden">Regular price</span>
+                                                                <s id="ComparePrice-product-template"><span class="money">Rs. {{a.price}}</span></s>
+                                                                <span class="product-price__price product-price__price-product-template product-price__sale product-price__sale--single">
+                                                                    <span id="ProductPrice-product-template"><span class="money">Rs. {{a.discount_price}}</span></span>
+                                                                </span>
+                                                            </p>
+                                                            <div class="product-single__description rte">
+                                                               {{a.description}}
+                                                            </div>
+
+                                                        <form method="POST" action="{{a.get_add_to_cart_url}}" id="modal-{{a.slug}}" accept-charset="UTF-8" class="product-form product-form-product-template hidedropdown" enctype="multipart/form-data">
+                                                            {%csrf_token%}
+                                                            <div class="swatch clearfix swatch-1 option2" data-option-index="1">
+                                                                <div class="product-form__item">
+                                                                     {%if item.variation_set.all %}
+                                                                     <span style="font-size:15px;color:"><strong>Please Select a Size</strong></span><br><br>
+                                                                    {%for size in a.variation_set.all%}
+                                                                     <div data-value="{{size.size}}" class="swatch-element {{size.size}} available">
+                                                                         <input class="swatchInput" id="swatch-1-{{size.size}}" type="radio" name="option-1" value="{{size.size}}" required="required">
+                                                                          <label class="swatchLbl medium rectangle" for="swatch-1-{{size.size}}" title="{{size.size}}">{{size.size}}</label>
+                                                                     </div>
+                                                                    {%endfor%}
+                                                                    {%endif%}
+                                                                </div>
+                                                            </div>
+                                                            <!-- Product Action -->
+                                                            <div class="product-action clearfix">
+                                                                <div class="product-form__item--quantity">
+                                                                    <div class="wrapQtyBtn">
+                                                                        <div class="qtyField">
+                                                                            <a class="qtyBtn minus" href="javascript:void(0);"><i class="fa anm anm-minus-r" aria-hidden="true"></i></a>
+                                                                            <input type="text" id="Quantity" name="quantity" value="1" class="product-form__input qty">
+                                                                            <a class="qtyBtn plus" href="javascript:void(0);"><i class="fa anm anm-plus-r" aria-hidden="true"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="product-form__item--submit">
+                                                                    <button type="submit" name="add" class="btn product-form__cart-submit">
+                                                                        <span>Add to cart</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <!-- End Product Action -->
+                                                        </form>
+                                                        <div class="display-table shareRow">
+                                                            <div class="display-table-cell">
+                                                                <div class="wishlist-btn">
+                                                                    <a class="wishlist add-to-wishlist" href="{{a.get_add_to_wishlist_url}}" title="Add to Wishlist"><i class="icon anm anm-heart-l" aria-hidden="true"></i> <span>Add to Wishlist</span></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    <!--End-product-single-->
+                                    </div>
+                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                </div>
+                                {%endfor%}
+                            </div>
+                            <div class="row">
+                                <div class="pagination">
+                                    <span class="step-links">
+                                        {% if items.has_previous %}
+                                            <a href="?page=1">&laquo; first</a>
+                                            <a href="?page={{ items.previous_page_number }}">previous</a>
+                                        {% endif %}
+                                        
+                                        <span class="current">
+                                            {% if items %}
+                                            <a href="#" class="active">Page {{ items.number }} of {{ items.paginator.num_pages }}.</a>
+                                            {%else%}
+                                            <a href="#" class="active">Sorry, No products available.</a>
+                                            {%endif%}
+                                        </span>
+                                
+                                        {% if items.has_next %}
+                                            <a href="?page={{ items.next_page_number }}">next</a>
+                                            <a href="?page={{ items.paginator.num_pages }}">last &raquo;</a>
+                                        {% endif %}
+                                    </span>
+                                </div>
+                               <!-- <div class="pagination">
+                                    {% if items.has_previous %}
+                                        <a href="?page={{ items.previous_page_number}}">&laquo;</a>
+                                    {% endif %}
+                                    <a href="#">{{items.number}}</a>
+                                    <a href="#" class="active">2</a>
+                                    <a href="#">3</a>
+                                    <a href="#">4</a>
+                                    <a href="#">5</a>
+                                    <a href="#">6</a>
+                                    <a href="#">&raquo;</a>
+                                    {% if items.has_next %}
+                                            <a href="?page={{ items.next_page_number }}">next</a>
+                                            <a href="?page={{ items.paginator.num_pages }}">last &raquo;</a>
+                                    {% endif %}
+                                </div>-->
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--End Main Content-->               </div>
+            </div>
+        </div>
+    <!--End Body Content-->
+    </div>
+    
+
+   {%endblock%}

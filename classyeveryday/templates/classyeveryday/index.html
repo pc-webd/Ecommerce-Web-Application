@@ -1,0 +1,362 @@
+{% extends "classyeveryday/basetemp.html" %}
+{%block style%}
+{%endblock style%}
+{% block content%}
+   {% load static %}
+
+    <!--Promotion Bar-->
+	<div class="notification-bar mobilehide">
+    	<a href="#" class="notification-bar__message">10% off your very first purchase, use promo code: Classy fashion</a>
+        <span class="close-announcement">×</span>
+    </div>
+    <!--End Promotion Bar-->
+    <div id="page-content">
+    	<!--Home slider-->
+    	<div class="slideshow slideshow-wrapper pb-section">
+        	<div class="home-slideshow">
+            	<div class="slide">
+                	<div class="blur-up lazyload">
+                        <img class="blur-up lazyload" data-src="{% static 'images/slideshow-banners/slide-00.jpg'%}" src="{% static 'images/slideshow-banners/home2-default-banner1.jpg'%}" alt="Shop Our New Collection" title="Shop Our New Collection" />
+                        <div class="slideshow__text-wrap slideshow__overlay classic middle">
+                            <div class="slideshow__text-content middle">
+                            	<div class="container">
+                                    <div class="wrap-caption left">
+                                        <h2 class="h1 mega-title slideshow__title" id="slideshow_title">Our New Collection</h2>
+                                        <span class="mega-subtitle slideshow__subtitle">Save up to 50% Off</span>
+                                        <a href="{%url 'classyeveryday:products'%}?gen=W"><span class="btn" id="slide_btn3">Shop now</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                	<div class="blur-up lazyload">
+                        <img class="blur-up lazyload" data-src="{% static 'images/slideshow-banners/slide-01.jpg'%}" src="{% static 'images/slideshow-banners/home2-default-banner2.jpg'%}" alt="Summer Bikini Collection" title="Summer Bikini Collection" />
+                        <div class="slideshow__text-wrap slideshow__overlay classic middle">
+                            <div class="slideshow__text-content middle">
+                            	<div class="container">
+                                    <div class="wrap-caption left">
+                                        <h2 class="h1 mega-title slideshow__title" id="slideshow_title1">Fashion &amp; Show</h2>
+                                        <span class="mega-subtitle slideshow__subtitle">A World Fashion and Trendy Fashion Clother's</span>
+                                        <a href="{%url 'classyeveryday:products'%}?gen=W"><span class="btn" id="slide_btn2">Shop now</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                	<div class="blur-up lazyload">
+                        <img class="blur-up lazyload" data-src="{% static 'images/slideshow-banners/slide-02.jpg'%}" src="{% static 'images/slideshow-banners/home2-default-banner2.jpg'%}" alt="Summer Bikini Collection" title="Summer Bikini Collection" />
+                        <div class="slideshow__text-wrap slideshow__overlay classic middle">
+                            <div class="slideshow__text-content middle">
+                            	<div class="container">
+                                    <div class="wrap-caption right">
+                                        <h2 class="h1 mega-title slideshow__title" id="slideshow_title2">Always in style!</h2>
+                                        <span class="mega-subtitle slideshow__subtitle">An exciting place for the whole family to shop.</span>
+                                        <span class="btn" id="slide_btn1">Shop now</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                	<div class="blur-up lazyload">
+                        <img class="blur-up lazyload" data-src="{% static 'images/slideshow-banners/slide-03.jpg'%}" src="{% static 'images/slideshow-banners/home2-default-banner2.jpg'%}" alt="Summer Bikini Collection" title="Summer Bikini Collection" />
+                        <div class="slideshow__text-wrap slideshow__overlay classic middle">
+                            <div class="slideshow__text-content middle">
+                            	<div class="container">
+                                    <div class="wrap-caption left">
+                                        <h2 class="h1 mega-title slideshow__title" id="slideshow_title3">Get better looking.</h2>
+                                        <span class="mega-subtitle slideshow__subtitle">
+                                                Favorite brands and hottest trends</span>
+                                        <a href="{%url 'classyeveryday:products'%}?gen=M"><span class="btn" id="slide_btn">Shop now</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Home slider-->
+        <!--Weekly Bestseller-->
+        <div class="section">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="section-header text-center">
+                            <h2 class="h2">Weekly Bestseller</h2>
+                            <p>Our most popular products based on sales</p>
+                        </div>
+						<div class="productSlider grid-products">
+                             {% for item in weekBest %}
+                                <div class="col-12 item">
+                                      <!-- start product image -->
+                                    <div class="product-image">
+                                <!-- start product image -->
+                                <a href="{{item.get_absolute_url}}" class="grid-view-item__link">
+                                    <!-- image -->
+                                    <img class="primary blur-up lazyload" data-src="{{item.productimage.url}}" src="{{item.productimage.url}}" alt="image" title="product" >
+                                    <!-- End image -->
+                                    <!-- Hover image -->
+                                    <img class="hover blur-up lazyload" data-src="{{item.productimage.url}}" src="{{item.productimage.url}}" alt="image" title="product" width="200">
+                                    <!-- End hover image -->
+
+                                </a>
+                                <!-- end product image -->
+
+                                <!-- Start product button -->
+                                <form class="variants add" onclick="location.href ='{{item.get_absolute_url}}'">
+                                    <button class="btn btn-addto-cart" type="button" tabindex="0">Add to Cart</button>
+                                </form>
+                                <div class="button-set">
+                                    <div class="wishlist-btn">
+                                        <a class="wishlist add-to-wishlist" href="{{item.get_add_to_wishlist_url}}">
+                                            <i class="icon anm anm-heart-l"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- end product button -->
+                            </div>
+                                    <!-- end product image -->
+                                    <div class="product-details text-center">
+                                    <!-- product name -->
+                                    <div class="product-name">
+                                        <a href="{{item.get_absolute_url}}">{{item.title}}</a>
+                                    </div>
+                                    <!-- End product name -->
+                                    <!-- product price -->
+                                    <div class="product-price">
+                                        <span class="price">Rs. {{item.discount_price}}</span>
+                                    </div>
+                                    <!-- End product price -->
+
+                                </div>
+
+                                </div>
+
+                            {%endfor%}
+                        </div>
+                    </div>
+            	</div>    
+            </div>
+        </div>
+        <!--Weekly Bestseller-->
+        <!--Parallax Section-->
+        <div class="section">
+            <div class="hero hero--large hero__overlay bg-size">
+            	<img class="bg-img" src="{% static 'images/parallax-banners/parallax-banner.jpg'%}" alt="" />
+                <div class="hero__inner">
+                    <div class="container">
+                        <div class="wrap-text left text-small font-bold">
+                            <h2 class="h2 mega-title" id="mega_title">ClassyEveryday <br> The best choice for your store</h2>
+                            <a href="{%url 'classyeveryday:products'%}?gen=W" class="btn" id="mega_btn">Purchase Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Parallax Section-->
+        <!--New Arrivals-->
+        <div class="product-rows section">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        				<div class="section-header text-center">
+                            <h2 class="h2">New Arrivals</h2>
+                            <p>Grab these new items before they are gone!</p>
+                        </div>
+            		</div>
+                </div>
+	            <div class="grid-products">
+                	<div class="row">
+                        {% for item in newArrival %}
+                        <div class="col-md-3 col-sm-2 item">
+                            <!-- start product image -->
+                            <div class="product-image">
+                                <!-- start product image -->
+                                <a href="{{item.get_absolute_url}}" class="grid-view-item__link">
+                                    <img class="primary blur-up lazyload" data-src="{{item.productimage.url}}" src="{{item.productimage.url}}" alt="image" title="product" >
+                                    <!-- Hover image -->
+                                    <img class="hover blur-up lazyload" data-src="{{item.productimage.url}}" src="{{item.productimage.url}}" alt="image" title="product" width="200">
+                                    <!-- End hover image -->
+                                </a>
+                                <!-- end product image -->
+                                <!-- Start product button -->
+                                <form class="variants add" action="#" data-toggle="modal" data-target="#{{item.slug}}">
+                                    <button class="btn btn-addto-cart" type="button" tabindex="0">Add to Cart</button>
+                                </form>
+                                <div class="button-set">
+                                    <a href="javascript:void(0)" title="Quick View" class="quick-view-popup quick-view" data-toggle="modal" data-target="#{{item.slug}}">
+                                        <i class="icon anm anm-search-plus-r"></i>
+                                    </a>
+                                    <div class="wishlist-btn">
+                                        <a class="wishlist add-to-wishlist" href="{{item.get_add_to_wishlist_url}}">
+                                            <i class="icon anm anm-heart-l"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- end product button -->
+                            </div>
+                            <!-- end product image -->
+                            <!--start product details -->
+                            <div class="product-details text-center">
+                                <!-- product name -->
+                                <div class="product-name">
+                                    <a href="{{item.get_absolute_url}}">{{item.title}}</a>
+                                </div>
+                                <!-- End product name -->
+                                <!-- product price -->
+                                <div class="product-price">
+                                    <span class="price">Rs. {{item.discount_price}}</span>
+                                </div>
+                                <!-- End product price -->
+                            </div>
+                            <!-- End product details -->
+                        </div>
+                        <!--Quick View popup-->
+                        <div id="quick">
+                            <div class="modal fade quick-view-popup quickView" id="{{item.slug}}" role="dialog">
+                                <div class="modal-dialog" id="">
+                                    <div class="modal-content" style="border:0;padding:25px">
+                                        <div class="modal-body" style="border:0; padding:0;">
+                                            <div id="ProductSection-product-template" class="product-template__container prstyle1">
+                                                <div class="product-single">
+                                                    <!-- Start model close -->
+                                                    <a href="javascript:void()" data-dismiss="modal" class="model-close-btn pull-right"
+                                                       title="close"><span class="icon icon anm anm-times-l"></span>
+                                                    </a>
+                                                     <!-- End model close -->
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                            <div class="product-details-img">
+                                                                <div class="pl-20">
+                                                                    <img src="{{item.productimage.url}}" alt="" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                            <div class="product-single__meta">
+                                                                <h2 class="product-single__title">{{item.title}}</h2>
+                                                                <div class="prInfoRow">
+                                                                    <div class="product-stock"> <span class="instock ">In Stock</span> <span class="outstock hide">Unavailable</span> </div>
+                                                                </div>
+                                                                <p class="product-single__price product-single__price-product-template">
+                                                                    <span class="visually-hidden">Regular price</span>
+                                                                    <s id="ComparePrice-product-template"><span class="money">Rs. {{item.price}}</span></s>
+                                                                    <span class="product-price__price product-price__price-product-template product-price__sale product-price__sale--single">
+                                                                        <span id="ProductPrice-product-template"><span class="money">Rs. {{item.discount_price}}</span></span>
+                                                                    </span>
+                                                                </p>
+                                                                <div class="product-single__description rte">
+                                                                   {{item.description}}
+                                                                </div>
+                                                                <span id="msg"></span>
+                                                                <form method="POST" action="{{item.get_add_to_cart_url}}" id="model-{{item.slug}}" accept-charset="UTF-8" class="product-form {{item.slug}} product-form-product-template hidedropdown" enctype="multipart/form-data">
+                                                                    {%csrf_token%}
+                                                                    <div class="swatch clearfix swatch-1 option2" data-option-index="1">
+                                                                        <div class="product-form__item">
+                                                                            {%if item.variation_set.all %}
+                                                                            <span style="font-size:15px;color:"><strong>Please Select a Size</strong></span><br><br>
+                                                                            {%for size in item.variation_set.all%}
+                                                                             <div data-value="{{size.size}}" class="swatch-element {{size.size}} available">
+                                                                                 <input class="swatchInput" id="swatch-1-{{size.size}}" type="radio" name="option-1" value="{{size.size}}" required="required">
+                                                                                  <label class="swatchLbl medium rectangle" for="swatch-1-{{size.size}}" title="{{size.size}}">{{size.size}}</label>
+                                                                             </div>
+                                                                            {%endfor%}
+                                                                            {%endif%}
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Product Action -->
+                                                                    <div class="product-action clearfix">
+                                                                        <div class="product-form__item--quantity">
+                                                                            <div class="wrapQtyBtn">
+                                                                                <div class="qtyField">
+                                                                                    <a class="qtyBtn minus" href="javascript:void(0);"><i class="fa anm anm-minus-r" aria-hidden="true"></i></a>
+                                                                                    <input type="text" id="Quantity-{{item.slug}}" name="quantity" value="1" class="product-form__input qty">
+                                                                                    <a class="qtyBtn plus" href="javascript:void(0);"><i class="fa anm anm-plus-r" aria-hidden="true"></i></a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="product-form__item--submit">
+                                                                            <button type="submit" name="add" class="btn product-form__cart-submit">
+                                                                                <span>Add to cart</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- End Product Action -->
+                                                                </form>
+                                                                <div class="display-table shareRow">
+                                                                    <div class="display-table-cell">
+                                                                        <div class="wishlist-btn">
+                                                                            <a class="wishlist add-to-wishlist" href="{{item.get_add_to_wishlist_url}}" title="Add to Wishlist"><i class="icon anm anm-heart-l" aria-hidden="true"></i> <span>Add to Wishlist</span></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <!--End-product-single-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Quick View popup-->
+                        {%endfor%}
+                    </div>
+                    <div class="row">
+                    	<div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                        	<a href="{% url 'classyeveryday:allprod' %}" class="btn">View all</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>	
+        <!--End Featured Product-->
+        
+        <!--Logo Slider-->
+        <div class="section logo-section">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    	<div class="section-header text-center">
+                        	<h2 class="h2">The Most Loved Brands</h2>
+                    	</div>
+                		<div class="logo-bar">
+                            <div class="logo-bar__item">
+                                <img src="{% static 'images/logo/brandlogo1.png'%}" alt="" title="" />
+                            </div>
+                            <div class="logo-bar__item">
+                                <img src="{% static 'images/logo/brandlogo2.png'%}" alt="" title="" />
+                            </div>
+                            <div class="logo-bar__item">
+                                <img src="{% static 'images/logo/brandlogo3.png'%}" alt="" title="" />
+                            </div>
+                            <div class="logo-bar__item">
+                                <img src="{% static 'images/logo/brandlogo4.png'%}" alt="" title="" />
+                            </div>
+                            <div class="logo-bar__item">
+                                <img src="{% static 'images/logo/brandlogo5.png'%}" alt="" title="" />
+                            </div>
+                            <div class="logo-bar__item">
+                                <img src="{% static 'images/logo/brandlogo6.png'%}" alt="" title="" />
+                            </div>
+               			 </div>
+                	</div>
+                </div>
+            </div>
+        </div>
+        <!--End Logo Slider-->
+    </div>
+    <!--End Body Content-->
+{% endblock%}
+{%block extra_scripts%}
+
+
+{%endblock extra_scripts%}

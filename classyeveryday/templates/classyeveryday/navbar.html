@@ -1,0 +1,536 @@
+{% load cart_template_tags %}
+{% load static %}
+<div id="pre-loader">
+    <img src="{% static 'images/loader.gif' %}" alt="Loading..." />
+</div>
+<div class="pageWrapper">
+	<!--Search Form Drawer-->
+	<div class="search">
+        <div class="search__form">
+            <form class="search-bar__form" action="{% url 'classyeveryday:search'%}" value="{{request.GET.q}}" method="get">
+                <button class="go-btn search__button" name="submit" type="submit" value="Search"><i class="icon anm anm-search-l"></i></button>
+                <input class="search__input" type="search" name="q" value="{{request.GET.q}}" placeholder="Search entire store..." aria-label="Search" autocomplete="off">
+            </form>
+            <button type="button" class="search-trigger close-btn"><i class="anm anm-times-l"></i></button>
+        </div>
+    </div>
+    <!--End Search Form Drawer-->
+    <!--Top Header-->
+    <div class="top-header">
+        <div class="container-fluid">
+            <div class="row">
+            	<div class="col-10 col-sm-8 col-md-5 col-lg-4">
+                    <p class="phone-no" style="color:white"><i class="anm anm-phone-s"></i> +91 7417765885</p>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4 d-none d-lg-none d-md-block d-lg-block">
+                	<div class="text-center"><p class="top-header_middle-text" style="color:white"> Worldwide Express Shipping</p></div>
+                </div>
+                <div class="col-2 col-sm-4 col-md-3 col-lg-4 text-right">
+                	<span class="user-menu d-block d-lg-none"><i class="anm anm-user-al" aria-hidden="true" style="color:white"></i></span>
+                    <ul class="customer-links list-inline">
+                        <li><a href="{% url 'classyeveryday:wishlist'%}"  style="color:white">Wishlist</a></li>
+                        {% if user.is_authenticated %}
+
+                                <li><a href="{% url 'classyeveryday:order'%}" style="color:white">My Orders</a></li>
+                                <li><a href="{% url 'classyeveryday:logout_user' %}" style="color:white">Logout</a></li>
+                                <li style="color:white;text-decoration:underline">{{user.username}}</li>
+                        {%else%}
+                                <li><a href="{% url 'classyeveryday:login_user' %}" style="color:white">Login</a></li>
+                                <li><a href="{% url 'classyeveryday:register' %}" style="color:white">Register</a></li>
+                        {% endif %}
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Top Header-->
+    <!--Header-->
+    <div class="header-wrap animated d-flex border-bottom">
+    	<div class="container-fluid">
+            <div class="row align-items-center">
+            	<!--Desktop Logo-->
+                <div class="logo col-md-2 col-lg-2 d-none d-lg-block">
+                    <a href="{%url 'classyeveryday:home'%}" style="text-decoration:none">
+                        <h2 class="pt-2">Classy Everyday</h2>
+                    	<!--<img src="" alt="ClassyEveryday Multipurpose Html Template" title="ClassyEveryday Multipurpose Html Template" />-->
+                    </a>
+                </div>
+                <!--End Desktop Logo-->
+                <div class="col-2 col-sm-3 col-md-3 col-lg-8">
+                	<div class="d-block d-lg-none">
+                        <button type="button" class="btn--link site-header__menu js-mobile-nav-toggle mobile-nav--open">
+                        	<i class="icon anm anm-times-l"></i>
+                            <i class="anm anm-bars-r"></i>
+                        </button>
+                    </div>
+                	<!--Desktop Menu-->
+                	<nav class="grid__item" id="AccessibleNav"><!-- for mobile -->
+                        <ul id="siteNav" class="site-nav medium center hidearrow">
+                            <li class="lvl1 parent megamenu"><a href="{% url 'classyeveryday:home'%}">Home <i class="anm anm-angle-down-l"></i></a></li>
+                            <li class="lvl1 parent megamenu"><a href="#">Men <i class="anm anm-angle-down-l"></i></a>
+                                <div class="megamenu style2">
+                                <ul class="grid mmWrapper">
+                                    <li class="grid__item one-whole">
+                                        <ul class="grid">
+                                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#" class="site-nav lvl-1">Footwear</a>
+                                                <ul class="subLinks">
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=SS" class="site-nav lvl-2">Sport Shoes</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=CAS" class="site-nav lvl-2">Casual Shoes</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=FOS" class="site-nav lvl-2">Formal Shoes</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=SN" class="site-nav lvl-2">Sandals & Floaters</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=FF" class="site-nav lvl-2">Flip Flops</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=LO" class="site-nav lvl-2">Loafers</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=BO" class="site-nav lvl-2">Bootes</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=RUS" class="site-nav lvl-2">Running Shoes</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=SNE" class="site-nav lvl-2">Sneakers</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#" class="site-nav lvl-1">Clothing</a>
+                                                <ul class="subLinks">
+                                                    <li class="lvl-2"><b>Top Wear</b></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=TW&sub=T" class="site-nav lvl-2">T-Shirts</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=TW&sub=FS" class="site-nav lvl-2">Formal Shirts</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=TW&sub=CS" class="site-nav lvl-2">Casual Shirts</a></li>
+                                                    <br>
+                                                    <li class="lvl-2"><b>Bottom Wear</b></li>
+
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=BW&sub=J" class="site-nav lvl-2">Jeans <span class="lbl nm_label3">Hot</span></a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=BW&sub=CT" class="site-nav lvl-2">Casual Trousers</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=BW&sub=FT" class="site-nav lvl-2">Formal Trousers</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=BW&sub=TP" class="site-nav lvl-2">Track Pants</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=BW&sub=S" class="site-nav lvl-2">Shorts</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=BW&sub=C" class="site-nav lvl-2">Cargos</a></li>
+
+                                                </ul>
+                                              </li>
+                                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#" class="site-nav lvl-1">Winter Wear</a>
+                                                    <ul class="subLinks">
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=SS" class="site-nav lvl-2">Sweatshirts</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=JA" class="site-nav lvl-2">Jackets</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=ST" class="site-nav lvl-2">Sweater</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=TS" class="site-nav lvl-2">Tracksuits</a></li>
+                                                        <br>
+                                                        <li class="lvl-2"><b>Ethnic Wear</b></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=K" class="site-nav lvl-2">Kurta</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=ES" class="site-nav lvl-2">Ethnic Sets</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=SH" class="site-nav lvl-2">Sherwani</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=PY" class="site-nav lvl-2">Pyjama</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=D" class="site-nav lvl-2">Dhoti</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=LU" class="site-nav lvl-2">Lungi</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#" class="site-nav lvl-1">Watches</a>
+                                                    <ul class="subLinks">
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=W&sub=FT" class="site-nav lvl-2">Fastrack</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=W&sub=CA" class="site-nav lvl-2">Casio <span class="lbl nm_label1">New</span></a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=W&sub=TI" class="site-nav lvl-2">Titan</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=W&sub=FO" class="site-nav lvl-2">Fossil</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=W&sub=SON" class="site-nav lvl-2">Sonata</a></li>
+                                                        <br>
+                                                        <li class="lvl-2"><b>Accessories</b></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=B" class="site-nav lvl-2">Backpacks</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=WL" class="site-nav lvl-2">Wallets</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=BL" class="site-nav lvl-2">Belts</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=SUN" class="site-nav lvl-2">Sunglasses</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=LT" class="site-nav lvl-2">Luggage & Travel</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=FR" class="site-nav lvl-2">Frames</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=JW" class="site-nav lvl-2">Jewellery</a></li>
+
+                                                    </ul>
+                                                </li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                          	</div>
+                            </li>
+                            <li class="lvl1 parent megamenu"><a href="#">Women <i class="anm anm-angle-down-l"></i></a>
+                        	    <div class="megamenu style2">
+                                <ul class="grid mmWrapper">
+                                    <li class="grid__item one-whole">
+                                        <ul class="grid">
+                                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#" class="site-nav lvl-1">Clothing</a>
+                                                <ul class="subLinks">
+                                                    <li class="lvl-2"><b>Women Western & Maternity Wear</b></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=WM&sub=TWW" class="site-nav lvl-2">Topwear</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=DR" class="site-nav lvl-2">Dresses</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=J" class="site-nav lvl-2">Jeans</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=SH" class="site-nav lvl-2">Shorts</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=SK" class="site-nav lvl-2">Skirts</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=JT" class="site-nav lvl-2">Jeggings & Tights</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=TCW" class="site-nav lvl-2">Trousers & Capris</a></li>
+                                                    <br>
+                                                    <li class="lvl-2"><b>Lingerie & Sleepwear</b></li>
+                                                     <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=LS&sub=BRA" class="site-nav lvl-2">Bras</a></li>
+                                                     <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=LS&sub=PAN" class="site-nav lvl-2">Panties</a></li>
+                                                     <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=LS&sub=ND" class="site-nav lvl-2">Night Dresses & Nighties</a></li>
+                                                     <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=LS&sub=LS" class="site-nav lvl-2">Lingerie Sets</a></li>
+                                                     <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=LS&sub=SW" class="site-nav lvl-2">Shapewear</a></li>
+                                                     <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=LS&sub=CMS" class="site-nav lvl-2">Camisoles & Slips</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#" class="site-nav lvl-1">Ethnic Wear</a>
+                                                <ul class="subLinks">
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=SAR" class="site-nav lvl-2">Sarees</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=KK" class="site-nav lvl-2">Kurtas & Kurtis</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=DM" class="site-nav lvl-2">Dress Material</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=LC" class="site-nav lvl-2">Lehenga Choli</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=BL" class="site-nav lvl-2">Blouse</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=SWS" class="site-nav lvl-2">Kurta Sets & Salwar Suits <span class="lbl nm_label1">New</span></a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=GOW" class="site-nav lvl-2">Gowns</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=DUP" class="site-nav lvl-2">Dupattas</a></li>
+                                                    <br>    <li class="lvl-2"><b>Ethnic Bottoms</b></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=LC" class="site-nav lvl-2">Leggings & Churidars</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=PAL" class="site-nav lvl-2">Palazzos</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=SRA" class="site-nav lvl-2">Shararas</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=SP" class="site-nav lvl-2">Salwar & Patiala</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=DP" class="site-nav lvl-2">Dhoti Pants</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=ETT" class="site-nav lvl-2">Ethnic Trousers</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=PET" class="site-nav lvl-2">Saree Shapewear & Petticoats</a></li>
+                                                </ul>
+                                              </li>
+                                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#" class="site-nav lvl-1">Footwear</a>
+                                                    <ul class="subLinks">
+                                                        <li class="lvl-2"><b>Sandals</b></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=FLA" class="site-nav lvl-2">Flats</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=HE" class="site-nav lvl-2">Heels</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=WD" class="site-nav lvl-2">Wedges</a></li>
+                                                        <br><li class="lvl-2"><b>Shoes</b></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=SS" class="site-nav lvl-2">Sports Shoes</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=CAS" class="site-nav lvl-2">Casual Shoes</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=BO" class="site-nav lvl-2">Boots</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#" class="site-nav lvl-1">Accessories</a>
+                                                    <ul class="subLinks">
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=HD" class="site-nav lvl-2">Handbags</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=SB" class="site-nav lvl-2">Shoulder Bags <span class="lbl nm_label1">New</span></a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=TOT" class="site-nav lvl-2">Totes</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=SLB" class="site-nav lvl-2">Sling Bags</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=CL" class="site-nav lvl-2">Clutches</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=WL" class="site-nav lvl-2">Wallets<span class="lbl nm_label1">New</span></a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=BL" class="site-nav lvl-2">Belts</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=LT" class="site-nav lvl-2">Luggage and Travel</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=SUN" class="site-nav lvl-2">Sunglasses</a></li>
+                                                      <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=FR" class="site-nav lvl-2">Frames</a></li>
+                                                    </ul>
+                                                </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                          	</div>
+                            </li>
+                            <li class="lvl1 parent megamenu"><a href="#">Electronics<i class="anm anm-angle-down-l"></i></a>
+
+                                <div class="megamenu style2">
+                                <ul class="grid mmWrapper">
+                                    <li class="grid__item one-whole">
+                                        <ul class="grid">
+                                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#" class="site-nav lvl-1">Mobiles</a>
+                                                <ul class="subLinks">
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=MI" class="site-nav lvl-2">Mi</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=RM" class="site-nav lvl-2">Realme</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=SAM" class="site-nav lvl-2">Samsung</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=INF" class="site-nav lvl-2">Infinix</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=OPP" class="site-nav lvl-2">Oppo</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=APP" class="site-nav lvl-2">Apple</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=VI" class="site-nav lvl-2">Vivo</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=HN" class="site-nav lvl-2">Honor</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=ASU" class="site-nav lvl-2">Asus</a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=PX" class="site-nav lvl-2">POCO X2 </a></li>
+                                                    <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=RMN" class="site-nav lvl-2">Realme Nazro 10</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="grid__item lvl-1 col-md-3 col-lg-3"><a href="#" class="site-nav lvl-1">Mobile Accessories</a>
+                                                <ul class="subLinks">
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=MC" class="site-nav lvl-2">Mobile Cases</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=HH" class="site-nav lvl-2">Headphones & Headsets</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=PB" class="site-nav lvl-2">Power Banks </a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=SG" class="site-nav lvl-2">Screenguards</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=MMC" class="site-nav lvl-2">Memory Cards </a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=SHH" class="site-nav lvl-2">Smart Headphones</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=MCA" class="site-nav lvl-2">Mobile Cabels</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=MCG" class="site-nav lvl-2">Mobile Charges</a></li>
+                                                  <li class="lvl-2"><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=MH" class="site-nav lvl-2">Mobile Holders</a></li>
+                                                </ul>
+                                              </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                          	</div>
+
+                        </li>
+                        <li class="lvl1 parent dropdown"><a href="{% url 'classyeveryday:contact'%}">Contact <i class="anm anm-angle-down-l"></i></a></li>
+                        <li class="lvl1"><a href="#"><b>Buy Now!</b> <i class="anm anm-angle-down-l"></i></a></li>
+                      </ul>
+                    </nav>
+                    <!--End Desktop Menu-->
+                </div>
+                <!--Mobile Logo-->
+                <div class="col-6 col-sm-6 col-md-6 col-lg-2 d-block d-lg-none mobile-logo">
+                	<div class="logo">
+                        <a href="{% url 'classyeveryday:home'%}">
+                            <h2 align="center" class="pl-4" style="padding-top:5px">Classy Everyday</h2>
+                        </a>
+                    </div>
+                </div>
+                <!-- end Mobile Logo-->
+                <div class="col-4 col-sm-3 col-md-3 col-lg-2">
+                	<div class="site-cart">
+                    	<a href="#" class="site-header__cart" title="Cart">
+                        	<i class="icon anm anm-bag-l"></i>
+                            <span id="CartCount" class="site-header__cart-count" data-cart-render="item_count">{{ request.user|cart_item_count }}</span>
+                        </a>
+                        <!--Minicart Popup-->
+                        <div id="header-cart" class="block block-cart">
+                            {% if user.is_authenticated %}
+                              
+                                <ul class="mini-products-list">
+                                  
+                                    {%for o in object.items.all%}
+                                         <li class="item">
+                                        <a class="product-image" href="{{o.item.get_absolute_url}}">
+                                            <img src="{{o.item.productimage.url}}" alt="{{o.item.title}}" title="{{o.item.title}}" />
+                                        </a>
+                                        <div class="product-details">
+                                            <a href="{{o.item.get_remove_from_cart_url}}" class="remove"><i class="anm anm-times-l" aria-hidden="true"></i></a>
+                                            <a class="pName" href="cart.html">{{o.item.title}}</a>
+                                            <div class="variant-cart">
+                                                {% if o.size %}
+                                                  Size: {{o.size}}
+                                              {%endif%}
+
+                                            </div>
+                                            <div class="wrapQtyBtn">
+                                                <div class="qtyField">
+                                                    <span class="label">Qty:</span>
+                                                    <a class="qtyBtn minus" href="{% url 'classyeveryday:remove-single-item-from-cart' o.item.slug %}"><i class="fa anm anm-minus-r" aria-hidden="true"></i></a>
+                                                    <input type="text" name="quantity" value="{{o.quantity}}" class="product-form__input qty">
+                                                    <a class="qtyBtn plus" href="{% url 'classyeveryday:add-qty-to-cart' o.item.slug %}"><i class="fa anm anm-plus-r" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="priceRow">
+                                                <div class="product-price">
+                                                    Rs. {{o.item.discount_price}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                    &nbsp;&nbsp;&nbsp; Rs. {{o.get_final_price}}
+                                                </div>
+                                             </div>
+                                        </div>
+                                    </li>
+                                    {%endfor%}  
+                                </ul>
+
+                                  <div class="total">
+                                        <div class="total-in">
+                                            <span class="label">Cart Subtotal:</span><span class="product-price">Rs {{object.get_total}}</span>
+                                        </div>
+                                         <div class="buttonSet text-center">
+                                            <a href="{%url 'classyeveryday:order-summary'%}" class="btn btn-secondary btn--small">View Cart</a>
+                                             <a href="{%url 'classyeveryday:checkout'%}" class="btn btn-secondary btn--small">Checkout</a>
+                                         </div>
+                                  </div>
+                                
+                            {%else%}
+                                <p align="center">You are not Logged in</p>
+                            {%endif%}
+                        </div>
+                        <!--End Minicart Popup-->
+                    </div>
+                    <div class="site-header__search">
+                    	<button type="button" class="search-trigger"><i class="icon anm anm-search-l"></i></button>
+                    </div>
+                </div>
+        	</div>
+        </div>
+    </div>
+    <!--End Header-->
+
+    <!--Mobile Menu-->
+    <div class="mobile-nav-wrapper" role="navigation">
+		<div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div>
+        <ul id="MobileNav" class="mobile-nav">
+        	<li class="lvl1 parent megamenu"><a href="{% url 'classyeveryday:home'%}">Home</a></li>
+        	<li class="lvl1 parent megamenu"><a href="#">Men <i class="anm anm-plus-l"></i></a>
+                <ul>
+                <li><a href="#" class="site-nav">Footwear<i class="anm anm-plus-l"></i></a>
+                  <ul>
+                     <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=SS" class="site-nav ">Sport Shoes</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=CAS" class="site-nav">Casual Shoes</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=FOS" class="site-nav">Formal Shoes</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=SN" class="site-nav">Sandals & Floaters</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=FF" class="site-nav">Flip Flops</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=LO" class="site-nav">Loafers</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=BO" class="site-nav">Bootes</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=RUS" class="site-nav">Running Shoes</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=SNE" class="site-nav">Sneakers</a></li>
+                  </ul>
+                </li>
+                <li><a href="#" class="site-nav">Clothing<i class="anm anm-plus-l"></i></a>
+                  <ul>
+                      <li class=""><a href="#" class="site-nav"><b>Top Wear</b></a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=TW&sub=T" class="site-nav">T-Shirts</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=TW&sub=FS" class="site-nav">Formal Shirts</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=TW&sub=CS" class="site-nav">Casual Shirts</a></li>
+                      <br>
+                      <li class=""><a href="#" class="site-nav"><b>Bottom Wear</b></a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=BW&sub=J" class="site-nav ">Jeans <span class="lbl nm_label3">Hot</span></a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=BW&sub=CT" class="site-nav">Casual Trousers</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=BW&sub=FT" class="site-nav">Formal Trousers</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=BW&sub=TP" class="site-nav">Track Pants</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=BW&sub=S" class="site-nav">Shorts</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=BW&sub=C" class="site-nav">Cargos</a></li>
+
+
+                  </ul>
+                </li>
+                <li><a href="#" class="site-nav">Winter Wear<i class="anm anm-plus-l"></i></a>
+                  <ul>
+                        <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=SS" class="site-nav">Sweatshirts</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=JA" class="site-nav">Jackets</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=ST" class="site-nav">Sweater</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=TS" class="site-nav">Tracksuits</a></li>
+                      <br>
+                      <li class=""><a href="#" class="site-nav"><b>Ethnic Wear</b></a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=K" class="site-nav ">Kurta</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=ES" class="site-nav">Ethnic Sets</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=SH" class="site-nav">Sherwani</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=PY" class="site-nav">Pyjama</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=D" class="site-nav">Dhoti</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=LU" class="site-nav">Lungi</a></li>
+
+                  </ul>
+                </li>
+                <li><a href="#" class="site-nav">Accessories<i class="anm anm-plus-l"></i></a>
+                  <ul>
+                     <li class=""><a href="#" class="site-nav"><b>Watches</b></a></li>
+                     <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=W&sub=FT" class="site-nav">Fastrack</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=W&sub=CA" class="site-nav ">Casio <span class="lbl nm_label1">New</span></a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=W&sub=TI" class="site-nav">Titan</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=W&sub=FO" class="site-nav">Fossil</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=W&sub=SON" class="site-nav">Sonata</a></li>
+                      <br>
+                      <li class=""><a href="#" class="site-nav"><b>Accessories</b></a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=B" class="site-nav">Backpacks</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=WL" class="site-nav">Wallets</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=BL" class="site-nav">Belts</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=SUN" class="site-nav">Sunglasses</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=LT" class="site-nav">Luggage & Travel</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=FR" class="site-nav">Frames</a></li>
+                      <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=JW" class="site-nav">Jewellery</a></li>
+                  </ul>
+                </li>
+          </ul>
+            </li>
+            <li class="lvl1 parent megamenu"><a href="product-layout-1.html">Women <i class="anm anm-plus-l"></i></a>
+          <ul>
+            <li><a href="#" class="site-nav">Clothing<i class="anm anm-plus-l"></i></a>
+              <ul>
+                  <li class=""><a href="#" class="site_nav"><b>Women Western & <br>Maternity Wear</b></a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=WM&sub=TWW" class="site-nav">Topwear</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=DR" class="site-nav">Dresses</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=J" class="site-nav">Jeans</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=SH" class="site-nav">Shorts</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=SK" class="site-nav">Skirts</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=JT" class="site-nav">Jeggings & Tights</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=WW&sub=TCW" class="site-nav">Trousers & Capris</a></li>
+                  <br>
+                  <li class=""><a href="#" class="site_nav"><b>Lingerie & Sleepwear</b></a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=LS&sub=BRA" class="site-nav">Bras</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=LS&sub=PAN" class="site-nav">Panties</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=LS&sub=ND" class="site-nav">Night Dresses & Nighties</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=LS&sub=LS" class="site-nav">Lingerie Sets</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=LS&sub=SW" class="site-nav">Shapewear</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=LS&sub=CMS" class="site-nav">Camisoles & Slips</a></li>
+
+              </ul>
+            </li>
+            <li><a href="#" class="site-nav">Ethnic Wear<i class="anm anm-plus-l"></i></a>
+              <ul>
+                 <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=SAR" class="site-nav ">Sarees</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=KK" class="site-nav ">Kurtas & Kurtis</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=DM" class="site-nav ">Dress Material</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=LC" class="site-nav ">Lehenga Choli</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=BL" class="site-nav ">Blouse</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=SWS" class="site-nav ">Kurta Sets & Salwar Suits <span class="lbl nm_label1">New</span></a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=GOW" class="site-nav ">Gowns</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=DUP" class="site-nav ">Dupattas</a></li>
+                  <br><li class=""><a href="#" class="site-nav"><b>Ethnic Bottoms</b></a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=LC" class="site-nav ">Leggings & Churidars</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=PAL" class="site-nav ">Palazzos</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=SRA" class="site-nav ">Shararas</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=SP" class="site-nav ">Salwar & Patiala</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=DP" class="site-nav ">Dhoti Pants</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=ETT" class="site-nav ">Ethnic Trousers</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=EW&sub=PET" class="site-nav ">Saree Shapewear & Petticoats</a></li>
+
+              </ul>
+            </li>
+            <li><a href="#" class="site-nav">Footwear<i class="anm anm-plus-l"></i></a>
+              <ul>
+                <li class=""><b>Sandals</b></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=FLA" class="site-nav ">Flats</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=HE" class="site-nav ">Heels</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=WD" class="site-nav ">Wedges</a></li>
+                  <br><li class=""><a href="#" class="site-nav"><b>Shoes</b></a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=SS" class="site-nav ">Sports Shoes</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=CAS" class="site-nav ">Casual Shoes</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=F&sub=BO" class="site-nav ">Boots</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="site-nav">Accessories<i class="anm anm-plus-l"></i></a>
+              <ul>
+                 <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=HD" class="site-nav ">Handbags</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=SB" class="site-nav ">Shoulder Bags <span class="lbl nm_label1">New</span></a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=TOT" class="site-nav ">Totes</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=SLB" class="site-nav ">Sling Bags</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=CL" class="site-nav ">Clutches</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=WL" class="site-nav ">Wallets<span class="lbl nm_label1">New</span></a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=BL" class="site-nav ">Belts</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=LT" class="site-nav ">Luggage and Travel</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=SUN" class="site-nav ">Sunglasses</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=A&sub=FR" class="site-nav ">Frames</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+            <li class="lvl1 parent megamenu"><a href="about-us.html">Electronics <i class="anm anm-plus-l"></i></a>
+            <ul>
+                <li><a href="#" class="site-nav">Mobile<i class="anm anm-plus-l"></i></a>
+              <ul>
+                   <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=MI" class="site-nav ">Mi</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=RM" class="site-nav ">Realme</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=SAM" class="site-nav ">Samsung</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=INF" class="site-nav ">Infinix</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=OPP" class="site-nav ">Oppo</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=APP" class="site-nav">Apple</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=VI" class="site-nav ">Vivo</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=HN" class="site-nav">Honor</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=ASU" class="site-nav">Asus</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=PX" class="site-nav">POCO X2 </a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=M&sub=RMN" class="site-nav">Realme Nazro 10</a></li>
+              </ul>
+            </li>
+                 <li><a href="#" class="site-nav">Mobile Accessories<i class="anm anm-plus-l"></i></a>
+              <ul>
+                   <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=MC" class="site-nav ">Mobile Cases</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=HH" class="site-nav">Headphones & Headsets</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=PB" class="site-nav">Power Banks </a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=SG" class="site-nav">Screenguards</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=MMC" class="site-nav">Memory Cards </a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=SHH" class="site-nav">Smart Headphones</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=MCA" class="site-nav">Mobile Cabels</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=MCG" class="site-nav">Mobile Charges</a></li>
+                  <li class=""><a href="{% url 'classyeveryday:shop' %}?cat=MA&sub=MH" class="site-nav">Mobile Holders</a></li>
+              </ul>
+            </li>
+            </ul>
+            </li>
+        	<li class="lvl1 parent megamenu"><a href="blog-left-sidebar.html">Contact <i class="anm anm-plus-l"></i></a></li>
+        </li>
+      </ul>
+	</div>
+</div>
+	<!--End Mobile Menu-->
+

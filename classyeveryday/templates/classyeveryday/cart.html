@@ -1,0 +1,222 @@
+{% extends "classyeveryday/basetemp.html" %}
+{%block style%}
+    =======================================================================*/
+    .cart__row { position:relative; }
+    .cart th { font-weight:400; padding:10px 0 8px; background:#f2f2f2; text-transform:uppercase; padding-left:15px; padding-right:15px; letter-spacing:1px; }
+    .cart td { padding:10px; }
+    .cart .cart__meta { padding-right:15px; }
+    .cart th.cart__meta, .cart td.cart__meta { text-align:left; }
+    .cart__image-wrapper a { display:block; }
+    .cart .list-view-item__title { color:#000; font-size:1.15385em; min-width:100px; }
+    .cart__image-wrapper { width:120px; }
+    .cart .qtyField a { height:36px; line-height:34px; padding:0; }
+    .cart .qtyField .cart__qty-input { height:36px; width:40px; float:left; }
+    .cart .qtyField a .icon { line-height:33px; font-size:10px; }
+    .cart .cart__remove { border:0; margin-top:4px; font-size:14px; padding:0; height:25px; width:25px; text-align:center; vertical-align:middle; line-height:25px; }
+    .cart .cart__remove .icon { line-height:24px; }
+    .cart table tfoot .icon { vertical-align:middle; }
+    .style2 .cart__footer .cart-note { margin-bottom:30px; }
+    .cart__footer .solid-border { border:1px solid #e8e9eb; padding:20px; margin-bottom:20px; }
+    .cart__footer h5, .cart__footer .h5, .cart__footer h5 label, .cart__footer .h5 label, .cart__footer .cart__subtotal-title { color:#000; text-transform:uppercase; font-size:14px;font-family:Poppins,Helvetica,Tahoma,Arial,sans-serif; letter-spacing:0.02em; }
+    .cart-note__input { min-height:50px; width:100%; height:178px; }
+    .cart-note__label, .cart-note__input { display:block; }
+    .cart__subtotal { font-weight:700; padding-left:15px; display:inline-block; }
+    .cart__shipping { font-style:italic; font-size:13px; padding:12px 0; }
+    .cart_tearm label { cursor:pointer; }
+    input.checkbox { height:auto; vertical-align:middle; padding:0; box-shadow:none; }
+    #cartCheckout { width:100%; padding:15px; }
+    .cart .cart__price-wrapper{ text-align:center; }
+    .cart table { border:1px solid #f2f2f2; }
+    .cart table td { border:1px solid #f2f2f2; }
+    .cart th.text-right,
+    .cart .text-right.cart-price { text-align:center !important; }
+    .cart__meta-text { color:#a2a2a2; font-size:12px; }
+    .remove_icon{display:none}
+    .cart__qty1 .qtyField a { height:26px; line-height:24px; padding:0; }
+    .cart__qty1 .qtyField .cart__qty-input { height:22px; width:32px; float:left; }
+    .cart__qty1 .qtyField a .icon { line-height:20px; font-size:9px; }
+    .cart__qty1{display:none}
+
+    @media only screen and (max-width: 767px) {
+
+        .cart thead, .cart .cart__update-wrapper { display:none; padding-top:0; padding-bottom:15px; }
+        .cart__image-wrapper{width:20%}
+        .cart .small--hide, #cart__price { display:none; }
+        .cart tr, .cart tbody { width:100%; display:table; }
+        .cart tbody { display:block; }
+        .cart-flex { display:block; width:100%; }
+        .cart-flex-item { display:table-cell; min-width:0; }
+        .cart__image{max-width:100%;}
+        .cart-price{width:20%}
+         .remove_icon{display:block}
+        .cart__qty1{display:block}
+    }
+{%endblock%}
+{% block content%}
+    {%load static%}
+    <!--Body Content-->
+    <div id="page-content">
+    	<!--Page Title-->
+    	<div class="page section-header text-center">
+			<div class="page-title">
+        		<div class="wrapper"><h1 class="page-width">Shopping Cart</h1></div>
+      		</div>
+		</div>
+        <!--End Page Title-->
+        
+        <div class="container">
+        	<div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col" style="//border:1px solid red">
+                	<div class="alert alert-success text-uppercase" role="alert">
+						<i class="icon anm anm-truck-l icon-large"></i> &nbsp;<strong>Congratulations!</strong> You've got free shipping!
+					</div>
+                	<form action="#" method="post" class="cart style2">
+                		<table class="">
+                            <thead class="cart__row cart__header">
+                                <tr>
+                                    <th colspan="2" class="text-center">Product</th>
+                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-right">Total</th>
+                                    <th class="action">&nbsp;</th>
+                                </tr>
+                            </thead>
+                    		<tbody>
+                                {% for order_item in object.items.all %}
+                                <tr class="cart__row border-bottom line1 cart-flex border-top">
+                                    <td class="cart__image-wrapper cart-flex-item">
+                                        <a href="{{order_item.item.get_absolute_url}}"><img class="cart__image" src="{{order_item.item.productimage.url}}" alt="Elastic Waist Dress - Navy / Small"></a>
+                                    </td>
+                                    <td class="cart__meta small--text-left cart-flex-item">
+                                        <div class="list-view-item__title">
+                                            <a href="{{order_item.item.get_absolute_url}}">{{ order_item.item.title }}</a>
+                                        </div>
+                                        
+                                        <div class="cart__meta-text">
+                                            {% if order_item.size %}
+                                                Size: {{order_item.size}}
+                                            {%endif%}
+                                        </div>
+                                        <br>
+                                         <div class="cart__qty1 text-left">
+                                            <div class="qtyField">
+                                                <a class="qtyBtn minus" href="{% url 'classyeveryday:remove-single-item-from-cart' order_item.item.slug %}"><i class="icon icon-minus"></i></a>
+                                                <input class="cart__qty-input qty" type="text" name="updates[]" id="qty" value="{{ order_item.quantity }}" pattern="[0-9]*">
+                                                <a class="qtyBtn plus" href="{% url 'classyeveryday:add-qty-to-cart' order_item.item.slug %}"><i class="icon icon-plus"></i></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price-wrapper cart-flex-item" id="cart__price">
+                                        <span class="money">{{ order_item.item.discount_price }}</span>
+                                    </td>
+                                    <td class="cart__update-wrapper cart-flex-item text-right">
+                                        <div class="cart__qty text-center">
+                                            <div class="qtyField">
+                                                <a class="qtyBtn minus" href="{% url 'classyeveryday:remove-single-item-from-cart' order_item.item.slug %}"><i class="icon icon-minus"></i></a>
+                                                <input class="cart__qty-input qty" type="text" name="updates[]" id="qty1" value="{{ order_item.quantity }}" pattern="[0-9]*">
+                                                <a class="qtyBtn plus" href="{% url 'classyeveryday:add-qty-to-cart' order_item.item.slug %}"><i class="icon icon-plus"></i></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-right cart-price">
+                                        <span class="money">
+                                            {% if order_item.item.discount_price %}
+                                                Rs {{ order_item.get_total_discount_item_price }}
+                                            {% else %}
+                                                Rs {{ order_item.get_total_item_price }}
+                                            {% endif %}
+                                        </span>
+                                         <span class="text-center remove_icon"><a href="{% url 'classyeveryday:remove-from-cart' order_item.item.slug%}" class="btn btn--secondary cart__remove" title="Remove tem"><i class="icon icon anm anm-times-l"></i></a></span>
+                                    </td>
+                                    <td class="text-center small--hide"><a href="{% url 'classyeveryday:remove-from-cart' order_item.item.slug%}" class="btn btn--secondary cart__remove" title="Remove tem"><i class="icon icon anm anm-times-l"></i></a></td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan='5' align="center"><b>Your cart is empty</b>   </td>
+                                </tr>
+                                {%endfor%}
+                            </tbody>
+                    		<tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-left"><a href="{% url 'classyeveryday:home'%}" class="btn btn-secondary btn--small cart-continue">Continue shopping</a></td>
+                                    <td colspan="3" class="text-right">
+	                                    <button type="submit" name="clear" class="btn btn-secondary btn--small  small--hide">Clear Cart</button>
+
+                                    </td>
+                                </tr>
+                            </tfoot>
+                    </table> 
+                    </form>                   
+               	</div>
+                
+                
+                <div class="container mt-4">
+                    <div class="row">
+                    	<div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-4">
+                        	<h5>Discount Codes</h5>
+                            <form action="#" method="post">
+                            	<div class="form-group">
+                                    <label>Enter your coupon code if you have one.</label>
+                                    <input type="text" name="coupon">
+                                </div>
+                                <div class="actionRow">
+                                    <div><input type="button" class="btn btn-secondary btn--small" value="Apply Coupon"></div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-4">
+                        </div>
+                        
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 cart__footer">
+                            <div class="solid-border">	
+                              <div class="row border-bottom pb-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Subtotal</span>
+                                <span class="col-12 col-sm-6 text-right">
+                                    {% if object.get_total %}
+                                    <span class="money">
+                                        {{ object.get_total}}
+                                    </span></span>
+                              </div>
+                                <!--
+                              <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Tax</span>
+                                <span class="col-12 col-sm-6 text-right">$10.00</span>
+                              </div>-->
+                              <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title">Shipping</span>
+                                <span class="col-12 col-sm-6 text-right">Free shipping</span>
+                              </div>
+                              <div class="row border-bottom pb-2 pt-2">
+                                <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Grand Total</strong></span>
+                                <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right">
+                                    <span class="money">
+
+                                        {{ object.get_total}}
+
+                                    </span></span>
+                              </div>
+                                {%endif%}
+                              <div class="cart__shipping">Shipping &amp; taxes calculated at checkout</div>
+                                <form action="{%url 'classyeveryday:checkout'%}" method="get">
+                                  <p class="cart_tearm">
+                                    <label>
+                                      <input type="checkbox" required="required" name="tearm" class="checkbox" value="tearm" >
+                                      I agree with the terms and conditions
+                                    </label>
+                                  </p>
+                                    <input type="submit" name="checkout" id="cartCheckout" class="btn btn--small-wide checkout" value="Proceed To Checkout" >
+                                 <div class="paymnet-img"><img src="{% static 'images/payment-img.jpg'%}" alt="Payment"></div>
+                                </form>
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+    <!--End Body Content-->
+    
+{%endblock%}

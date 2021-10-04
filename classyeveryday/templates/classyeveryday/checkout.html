@@ -1,0 +1,366 @@
+{% extends "classyeveryday/basetemp.html" %}
+{% block content%}
+   {% load static %}
+    <!--Body Content-->
+    <div id="page-content">
+    	<!--Page Title-->
+    	<div class="page section-header text-center">
+			<div class="page-title">
+        		<div class="wrapper"><h1 class="page-width">Checkout</h1></div>
+      		</div>
+		</div>
+        <!--End Page Title-->
+        
+        <div class="container">
+        	<div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                    <div class="customer-box returning-customer">
+                        <h3><i class="icon anm anm-user-al"></i> Enter Your Details</h3>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                    <div class="customer-box customer-coupon">
+                        <h3 class="font-15 xs-font-13"><i class="icon anm anm-gift-l"></i> Have a coupon? <a href="#have-coupon" class="text-white text-decoration-underline" data-toggle="collapse">Click here to enter your code</a></h3>
+                        <div id="have-coupon" class="collapse coupon-checkout-content">
+                            <div class="discount-coupon">
+                                <div id="coupon" class="coupon-dec tab-pane active">
+                                    <p class="margin-10px-bottom">Enter your coupon code if you have one.</p>
+                                    <label class="required get" for="coupon-code"><span class="required-f">*</span> Coupon</label>
+                                    <input id="coupon-code" required="" type="text" class="mb-3">
+                                    <button class="coupon-btn btn" type="submit">Apply Coupon</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <form method="POST">
+                 {% csrf_token %}
+                 <div class="row billing-fields">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+                        <div class="create-ac-content bg-light-gray padding-20px-all">
+                            <div class="hideable_shipping_form">
+                                <fieldset>
+                                    <h2 class="login-title mb-3">Shipping details</h2>
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <label for="input-firstname1">First Name <span class="required-f">*</span></label>
+                                            <input name="shipping_customername" value="" id="input-firstname1"  type="text">
+                                        </div>
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <label for="phone1">Phone
+                                                 <span style="cursor:pointer" data-toggle="tooltip" data-placement="top" title="In case we need to contact you about your order">
+                                                     <i class='far fa-question-circle'></i>
+                                                 </span>
+                                            </label>
+                                            <input name="shipping_phone" value=""  type="text" id="phone1">
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                                <fieldset>
+                                    <div class="row">
+
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <label for="input-address1-1">Address <span class="required-f">*</span></label>
+                                            <input name="shipping_address1" value="" id="input-address1-1" type="text">
+                                        </div>
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                                            <label for="input-address1-2">Apartment </label>
+                                            <input name="shipping_address2" value="" id="input-address1-2"  type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                                            <label for="landmark1">Landmark (Optional)</label>
+                                            <input name="shipping_landmark" value="" id="landmark1"  type="text">
+                                        </div>
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <label for="city1">City </label>
+                                            <input name="shipping_city" value="" id="city1" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <label for="state1">Region / State <span class="required-f">*</span></label>
+                                            <select name="shipping_state" class="form-control" id="state1">
+                                                     <option value="">Select State</option>
+                                                      <option value="Andra Pradesh">Andra Pradesh</option>
+                                                      <option value="Assam">Assam</option>
+                                                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                      <option value="Bihar">Bihar</option>
+                                                      <option value="Chhattisgarh">Chhattisgarh</option>
+                                                      <option value="Goa">Goa</option>
+                                                      <option value="Gujarat">Gujarat</option>
+                                                      <option value="Haryana">Haryana</option>
+                                                      <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                      <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                      <option value="Jharkhand">Jharkhand</option>
+                                                      <option value="Karnataka">Karnataka</option>
+                                                      <option value="Kerala">Kerala</option>
+                                                      <option value="Madya Pradesh">Madya Pradesh</option>
+                                                      <option value="Maharashtra">Maharashtra</option>
+                                                      <option value="Manipur">Manipur</option>
+                                                      <option value="Meghalaya">Meghalaya</option>
+                                                      <option value="Mizoram">Mizoram</option>
+                                                      <option value="Nagaland">Nagaland</option>
+                                                      <option value="Orissa">Orissa</option>
+                                                      <option value="Punjab">Punjab</option>
+                                                      <option value="Rajasthan">Rajasthan</option>
+                                                      <option value="Sikkim">Sikkim</option>
+                                                      <option value="Tamil Nadu">Tamil Nadu</option>
+                                                      <option value="Telagana">Telagana</option>
+                                                      <option value="Tripura">Tripura</option>
+                                                      <option value="Uttaranchal">Uttaranchal</option>
+                                                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                      <option value="West Bengal">West Bengal</option>
+                                                </select>
+                                        </div>
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <label for="input-postcode1">Post Code <span class="required-f">*</span></label>
+                                            <input name="shipping_zip" value="" id="input-postcode1"  type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="form-group form-check col-md-12 col-lg-12 col-xl-12">
+                                            <label class="form-check-label padding-15px-left">
+                                                <input type="checkbox"  class="form-check-input same_billing"  name="same_billing_address" onchange="valueChanged()">
+                                                <strong>Billing address is the same as my shipping address</strong><br>
+                                                <input type="checkbox" class="form-check-input" name="set_default_shipping">
+                                                <strong>Save as default shipping address</strong><br>
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                              {% if default_shipping_address %}
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="form-group form-check col-md-12 col-lg-12 col-xl-12">
+                                            <label class="form-check-label padding-15px-left">
+                                                <input type="checkbox" class="form-check-input default_ship" onchange="useDefaultship()"  name="use_default_shipping" onchange="valueChanged()">
+                                                <b>Use default shipping address:</b> {{ default_shipping_address.street_address|truncatechars:09 }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                              {% endif %}
+                            <div class="hideable_billing_form">
+                                 <fieldset>
+                                    <h2 class="login-title mb-3">Billing details</h2>
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <label for="reqfield1">First Name <span class="required-f">*</span></label>
+                                            <input name="billing_customername" value="" id="reqfield1"  type="text" >
+                                        </div>
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <label for="phone2">Phone </label>
+                                            <input name="billing_phone" value="" id="phone2" type="text"  placeholder=" ">
+                                        </div>
+                                    </div>
+                                 </fieldset>
+                                 <fieldset>
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <label for="reqfield2">Address <span class="required-f">*</span></label>
+                                            <input name="billing_address1" value="" type="text" id="reqfield2">
+                                        </div>
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                                            <label for="">Apartment </label>
+                                            <input name="billing_address2" value="" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                                            <label for="input-address-2">Landmark (Optional)
+                                            <input name="billing_landmark" value=""  type="text">
+                                        </div>
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <label for="input-city">City </label>
+                                            <input name="billing_city" value="" type="text" id="reqfield3">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <label for="input-zone">Region / State <span class="required-f">*</span></label>
+                                            <select name="billing_state"  class="form-control" id="reqfield4">
+                                                      <option value="">Select State</option>
+                                                      <option value="Andra Pradesh">Andra Pradesh</option>
+                                                      <option value="Assam">Assam</option>
+                                                      <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                      <option value="Bihar">Bihar</option>
+                                                      <option value="Chhattisgarh">Chhattisgarh</option>
+                                                      <option value="Goa">Goa</option>
+                                                      <option value="Gujarat">Gujarat</option>
+                                                      <option value="Haryana">Haryana</option>
+                                                      <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                      <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                      <option value="Jharkhand">Jharkhand</option>
+                                                      <option value="Karnataka">Karnataka</option>
+                                                      <option value="Kerala">Kerala</option>
+                                                      <option value="Madya Pradesh">Madya Pradesh</option>
+                                                      <option value="Maharashtra">Maharashtra</option>
+                                                      <option value="Manipur">Manipur</option>
+                                                      <option value="Meghalaya">Meghalaya</option>
+                                                      <option value="Mizoram">Mizoram</option>
+                                                      <option value="Nagaland">Nagaland</option>
+                                                      <option value="Orissa">Orissa</option>
+                                                      <option value="Punjab">Punjab</option>
+                                                      <option value="Rajasthan">Rajasthan</option>
+                                                      <option value="Sikkim">Sikkim</option>
+                                                      <option value="Tamil Nadu">Tamil Nadu</option>
+                                                      <option value="Telagana">Telagana</option>
+                                                      <option value="Tripura">Tripura</option>
+                                                      <option value="Uttaranchal">Uttaranchal</option>
+                                                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                      <option value="West Bengal">West Bengal</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                            <label for="input-postcode">Post Code <span class="required-f">*</span></label>
+                                            <input name="billing_zip" value=""  type="text" id="reqfield5">
+                                        </div>
+                                    </div>
+                                 </fieldset>
+                                 <fieldset>
+                                    <div class="row">
+                                        <div class="form-group form-check col-md-12 col-lg-12 col-xl-12">
+                                            <label class="form-check-label padding-15px-left">
+                                                <input type="checkbox" class="form-check-input" name="set_default_billing">
+                                                <strong>Save as default billing address</strong>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            {% if default_billing_address %}
+                            <fieldset>
+                                <div class="row">
+                                    <div class="form-group form-check col-md-12 col-lg-12 col-xl-12">
+                                        <label class="form-check-label padding-15px-left">
+                                            <input type="checkbox" class="form-check-input default_bill" onchange="useDefaultbill()"  name="use_default_billing " onchange="valueChanged()" >
+                                            <b>Use default billing address: </b>{{ default_billing_address.street_address|truncatechars:9 }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="your-order-payment">
+                            <div class="your-order">
+                                <h2 class="order-title mb-4">Your Order</h2>
+
+                                <div class="table-responsive-sm order-table">
+                                    <table class="bg-white table table-bordered table-hover text-center">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-left">Product Name</th>
+                                                <th>Price</th>
+                                                <th>Qty</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for order_item in object.items.all %}
+                                            <tr>
+                                                <td class="text-left">{{ order_item.item.title }} <br>
+                                                    {% if order_item.size %}
+                                                        Size-{{order_item.size}}
+                                                    {%endif%}
+                                                </td>
+                                                <td>
+                                                    {{order_item.item.discount_price}}
+                                                </td>
+
+
+
+                                                <td>{{ order_item.quantity }}</td>
+                                                <td>
+                                                     {% if order_item.item.discount_price %}
+                                                        Rs {{ order_item.get_total_discount_item_price }}
+                                                    {% else %}
+                                                        Rs {{ order_item.get_total_item_price }}
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                            {%endfor%}
+                                        </tbody>
+                                        <tfoot class="font-weight-600">
+                                            <tr>
+                                                <td colspan="3" class="text-right">Shipping </td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3" class="text-right">Total</td>
+                                                <td>Rs. {{ object.get_total }}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="alert alert-info">
+                                <strong>COD</strong> is not available on this shipping Address. <b>Pay Now</b> and place Order.
+                            </div>
+                            <div class="your-payment">
+                                <div class="payment-method">
+                                    <div class="order-button-payment">
+                                        <button class="btn" value="Place order" type="submit">Place order </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+             </form>
+        </div>
+    </div>
+
+    <!--End Body Content-->
+   {%endblock%}
+
+{% block extra_scripts %}
+
+<script type="text/javascript">
+    function valueChanged()
+    {
+        if($('.same_billing').is(":checked"))
+            $(".hideable_billing_form").hide();
+        else
+            $(".hideable_billing_form").show();
+    }
+    function useDefaultship()
+    {
+        if($('.default_ship').is(":checked"))
+            $(".hideable_shipping_form").hide();
+        else
+            $(".hideable_shipping_form").show();
+    }
+    function useDefaultbill()
+    {
+        if($('.default_bill').is(":checked"))
+            $(".hideable_billing_form").hide();
+        else
+            $(".hideable_billing_form").show();
+    }
+
+
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+
+</script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+{% endblock extra_scripts %}

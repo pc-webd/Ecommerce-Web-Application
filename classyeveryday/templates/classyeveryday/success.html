@@ -1,0 +1,57 @@
+{% extends "classyeveryday/basetemp.html" %}
+{% block style%}
+        .orderSuccessful{
+            width:50%;
+            margin:auto;
+            border:1px solid black;
+            min-height:300px;
+        }
+         @media only screen and (max-width: 767px) {
+            .orderSuccessful{width:99%}
+
+            }
+
+{% endblock style%}
+{% block content%}
+        <div class="orderSuccessful">
+            <h1 align="center">Thank You For Your Order <i class='fas fa-check-circle' style=''></i></h1>
+            <center>
+                <table class="table table-bordered" style="width:60%">
+                    <tr>
+                        <td>Order-ID</td>
+                        <td>{{neworder.order_id}}</td>
+                    </tr>
+                    <tr>
+                         <td>Order-Date</td>
+                          <td>{{neworder.ordered_date}}</td>
+                    </tr>
+                    <tr>
+                        <td>Order-Amount</td>
+                        <td>{{neworder.order_amount}}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Shipping Details</b> <br>
+                              {{neworder.shipping_address.street_address}}, {{neworder.shipping_address.apartment_address}}
+                            <br> {{neworder.shipping_address.landmark}}, {{neworder.shipping_address.city}}
+                            {{neworder.shipping_address.state}}, <br> {{neworder.shipping_address.pincode}}
+
+                        </td>
+                        <td>
+                            <b>Billing Details</b> <br>
+                            {{neworder.billing_address.street_address}}, {{neworder.billing_address.apartment_address}}
+                            <br> {{neworder.billing_address.landmark}}, {{neworder.billing_address.city}}
+                            {{neworder.billing_address.state}} <br> {{neworder.billing_address.pincode}}
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <a href="{% url 'classyeveryday:home'%}"><button  class="btn btn--small-wide checkout" >Continue Shopping</button></a>
+            </center>
+
+        </div>
+
+{%endblock content%}
+{%block extra_scripts%}
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+{%endblock extra_scripts%}

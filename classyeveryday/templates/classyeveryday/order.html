@@ -1,0 +1,56 @@
+{% extends "classyeveryday/basetemp.html" %}
+{% block content%}
+{%load static%}
+        <div class="container">
+             <h1 align="center">My Orders</h1> <br><br>
+            <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-bordered" width="100%" style="overflow-x:auto">
+                                <thead>
+                                      <tr>
+                                          <th>#</th>
+                                           <th>Order-id</th>
+                                           <th>Products</th>
+                                           <th>Amount</th>
+                                           <th>Order_Date</th>
+                                            <th>Received</th>
+                                      </tr>
+                                </thead>
+                                <tbody>
+                                    {% for myOrder in object1.all %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>{{myOrder.order_id}}</td>
+                                        <td>
+                                            {% for item in myOrder.items.all%}
+                                                {{forloop.counter}}. <b><a href="{{item.item.get_absolute_url}}">{{item.item.title}}</a></b>,
+                                                 {%if item.size%}
+                                                    Size-{{item.size}}
+                                                {%endif%}
+                                                Qty- {{item.quantity}} , Price-{{item.item.discount_price}}<br>
+                                            {%endfor%}
+                                        </td>
+                                        <td>{{myOrder.order_amount}}</td>
+                                        <td>{{myOrder.ordered_date}}</td>
+                                        <td>
+                                            {% if myOrder.received != True %}
+                                                Not Received
+                                            {%else%}
+                                                Received
+                                            {%endif%}
+                                        </td>
+                                    </tr>
+                                    {%empty%}
+                                        <p align="center">You have no Orders, Continue Shopping</p>
+                                    {%endfor%}
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+{%endblock%}

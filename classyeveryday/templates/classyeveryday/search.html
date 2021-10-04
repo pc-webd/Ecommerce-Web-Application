@@ -1,0 +1,154 @@
+{% extends "classyeveryday/basetemp.html" %}
+{%block style%}
+{%endblock style%}
+{% block content%}
+   {% load static %}
+    <div class="container">
+        <h2 align="center">SEARCHING RESULTS</h2>
+        <div class="row">
+            {% if submitbutton == 'Search' and request.GET.q != '' %}
+            {% if results %}
+            {% for a in results %}
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3 grid-view-item style2 item">
+                <div class="grid-view_image">
+                    <!-- start product image -->
+                    <a href="{{a.get_absolute_url}}" class="grid-view-item__link">
+                        <!-- image -->
+                        <img class="grid-view-item__image primary blur-up lazyload" data-src="{{a.productimage.url}}" src="{{a.productimage.url}}" alt="image" title="product">
+                        <!-- End image -->
+                        <!-- Hover image -->
+                        <img class="grid-view-item__image hover blur-up lazyload" data-src="{{a.productimage.url}}" src="{{a.productimage.url}}" alt="image" title="product">
+                        <!-- End hover image -->
+                    </a>
+                    <!-- end product image -->
+                    <!--start product details -->
+                    <div class="product-details hoverDetails text-center mobile">
+                        <!-- product name -->
+                        <div class="product-name">
+                            <a href="{{a.get_absolute_url}}">{{a.title}}</a>
+                        </div>
+                        <!-- End product name -->
+                        <!-- product price -->
+                        <div class="product-price">
+                            {% if a.price != a.discount_price %}
+                            <span class="old-price">Rs. {{a.price}}</span>
+                            {%endif%}
+                            <span class="price">Rs. {{a.discount_price}}</span>
+                        </div>
+                        <!-- End product price-->
+                        <!-- product button -->
+                        <div class="button-set">
+                            <a href="" title="Quick View" class="quick-view-popup quick-view" tabindex="0" data-toggle="modal" data-target="#{{a.slug}}">
+                                <i class="icon anm anm-search-plus-r"></i>
+                            </a>
+                            <!-- Start product button -->
+                            <form action="#" method="post" data-toggle="modal" data-target="#{{a.slug}}">
+                                <button class="btn btn--secondary cartIcon btn-addto-cart" type="button"><i class="icon anm anm-bag-l"></i></button>
+                            </form>
+                            <div class="wishlist-btn">
+                                <a class="wishlist add-to-wishlist" href="{{a.get_add_to_wishlist_url}}" title="Add to Wishlist">
+                                    <i class="icon anm anm-heart-l"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- end product button -->
+                    </div>
+                    <!-- End product details -->
+                </div>
+            </div>
+            <div id="quick">
+                                    <div class="modal fade quick-view-popup quickView" id="{{a.slug}}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content" style="border:0;padding:25px">
+                                            <div class="modal-body" style="border:0; padding:0;">
+                                                <div id="ProductSection-product-template" class="product-template__container prstyle1">
+                                            <div class="product-single">
+                                            <!-- Start model close -->
+                                            <a href="javascript:void()" data-dismiss="modal" class="model-close-btn pull-right"
+                                               title="close"><span class="icon icon anm anm-times-l"></span></a>
+                                            <!-- End model close -->
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                    <div class="product-details-img">
+                                                        <div class="pl-20">
+                                                            <img src="{{a.productimage.url}}" alt="" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                    <div class="product-single__meta">
+                                                            <h2 class="product-single__title">{{a.title}}</h2>
+                                                            <div class="prInfoRow">
+                                                                <div class="product-stock"> <span class="instock ">In Stock</span> <span class="outstock hide">Unavailable</span> </div>
+                                                            </div>
+                                                            <p class="product-single__price product-single__price-product-template">
+                                                                <span class="visually-hidden">Regular price</span>
+                                                                <s id="ComparePrice-product-template"><span class="money">Rs. {{a.price}}</span></s>
+                                                                <span class="product-price__price product-price__price-product-template product-price__sale product-price__sale--single">
+                                                                    <span id="ProductPrice-product-template"><span class="money">Rs. {{a.discount_price}}</span></span>
+                                                                </span>
+                                                            </p>
+                                                            <div class="product-single__description rte">
+                                                               {{a.description}}
+                                                            </div>
+
+                                                        <form method="POST" action="{{a.get_add_to_cart_url}}" id="modal-{{a.slug}}" accept-charset="UTF-8" class="product-form product-form-product-template hidedropdown" enctype="multipart/form-data">
+                                                            {%csrf_token%}
+                                                            <div class="swatch clearfix swatch-1 option2" data-option-index="1">
+                                                                <div class="product-form__item">
+                                                                     {%if item.variation_set.all %}
+                                                                     <span style="font-size:15px;color:"><strong>Please Select a Size</strong></span><br><br>
+                                                                    {%for size in a.variation_set.all%}
+                                                                     <div data-value="{{size.size}}" class="swatch-element {{size.size}} available">
+                                                                         <input class="swatchInput" id="swatch-1-{{size.size}}" type="radio" name="option-1" value="{{size.size}}" required="required">
+                                                                          <label class="swatchLbl medium rectangle" for="swatch-1-{{size.size}}" title="{{size.size}}">{{size.size}}</label>
+                                                                     </div>
+                                                                    {%endfor%}
+                                                                    {%endif%}
+                                                                </div>
+                                                            </div>
+                                                            <!-- Product Action -->
+                                                            <div class="product-action clearfix">
+                                                                <div class="product-form__item--quantity">
+                                                                    <div class="wrapQtyBtn">
+                                                                        <div class="qtyField">
+                                                                            <a class="qtyBtn minus" href="javascript:void(0);"><i class="fa anm anm-minus-r" aria-hidden="true"></i></a>
+                                                                            <input type="text" id="Quantity" name="quantity" value="1" class="product-form__input qty">
+                                                                            <a class="qtyBtn plus" href="javascript:void(0);"><i class="fa anm anm-plus-r" aria-hidden="true"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="product-form__item--submit">
+                                                                    <button type="submit" name="add" class="btn product-form__cart-submit">
+                                                                        <span>Add to cart</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <!-- End Product Action -->
+                                                        </form>
+                                                        <div class="display-table shareRow">
+                                                            <div class="display-table-cell">
+                                                                <div class="wishlist-btn">
+                                                                    <a class="wishlist add-to-wishlist" href="{{a.get_add_to_wishlist_url}}" title="Add to Wishlist"><i class="icon anm anm-heart-l" aria-hidden="true"></i> <span>Add to Wishlist</span></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    <!--End-product-single-->
+                                    </div>
+                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                </div>
+            {% endfor %}
+            {%else%}
+            No search results
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+{%endblock%}

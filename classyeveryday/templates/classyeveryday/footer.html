@@ -1,0 +1,110 @@
+{%load static%}
+    <!--Footer-->
+    <footer id="footer" class="footer-2">
+        <div class="newsletter-section">
+            <div class="container">
+                <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-7 w-100 d-flex justify-content-start align-items-center">
+                            <div class="display-table">
+                                <div class="display-table-cell footer-newsletter">
+                                    <div class="section-header text-center">
+                                        <label class="h2"><span>sign up for </span>newsletter</label>
+                                    </div>
+                                    <form action="#" method="post">
+                                        <div class="input-group">
+                                            <input type="email" class="input-group__field newsletter__input" name="EMAIL" value="" placeholder="Email address" required="">
+                                            <span class="input-group__btn">
+                                                <button type="submit" class="btn newsletter__submit" name="commit" id="Subscribe"><span class="newsletter__submit-text--large">Subscribe</span></button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-5 d-flex justify-content-end align-items-center">
+                            <div class="footer-social">
+                                <ul class="list--inline site-footer__social-icons social-icons">
+                                    <li><a class="social-icons__link" href="#" target="_blank" title="ClassyEveryday Multipurpose Bootstrap 4 Template on Facebook"><i class="icon icon-facebook"></i></a></li>
+                                    <li><a class="social-icons__link" href="#" target="_blank" title="ClassyEveryday Multipurpose Bootstrap 4 Template on Twitter"><i class="icon icon-twitter"></i> <span class="icon__fallback-text">Twitter</span></a></li>
+                                    <li><a class="social-icons__link" href="#" target="_blank" title="ClassyEveryday Multipurpose Bootstrap 4 Template on Instagram"><i class="icon icon-instagram"></i> <span class="icon__fallback-text">Instagram</span></a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="site-footer">
+        	<div class="container">
+     			<!--Footer Links-->
+            	<div class="footer-top">
+                	<div class="row">
+                    	<div class="col-12 col-sm-12 col-md-3 col-lg-3 footer-links">
+                        	<h4 class="h4">Quick Shop</h4>
+                            <ul>
+                            	<li><a href="{%url 'classyeveryday:products'%}?gen=W">Women</a></li>
+                                <li><a href="{%url 'classyeveryday:products'%}?gen=M">Men</a></li>
+                                <li><a href="{%url 'classyeveryday:catprod'%}?cat=M">Mobile</a></li>
+                                <li><a href="{%url 'classyeveryday:catprod'%}?cat=A">Accessories</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 footer-links">
+                        	<h4 class="h4">Informations</h4>
+                            <ul>
+
+                                <li><a href="{%url 'classyeveryday:privacy'%}">Privacy policy</a></li>
+                                <li><a href="{%url 'classyeveryday:tnc'%}">Terms &amp; condition</a></li>
+                                <li><a href="{%url 'classyeveryday:order'%}">My Orders</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 footer-links">
+                        	<h4 class="h4">Customer Services</h4>
+                            <ul>
+
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="{%url 'classyeveryday:refund'%}">Cancellation/Refund Policy</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-3 col-lg-3 contact-box">
+                        	<h4 class="h4">Contact Us</h4>
+                            <ul class="addressFooter">
+                                <li class="phone"><i class="icon anm anm-phone-s"></i><p>(+91) 7417765885</p></li>
+                                <li class="email"><i class="icon anm anm-envelope-l"></i><p>classyeveryday365@gmail.com</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--End Footer Links-->
+                <hr>
+                <div class="footer-bottom">
+                	<div class="row">
+                    	<!--Footer Copyright-->
+	                	<div class="col-12 col-sm-12 col-md-12 col-lg-12 order-1 order-md-0 order-lg-0 order-sm-1 copyright text-center"><span></span> <a href="#">&copy; 2020 classyEveryday
+                            <br>Design and Developed By PCWebD</a></div>
+                        <!--End Footer Copyright-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--End Footer-->
+    <!--Scoll Top-->
+    <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
+    <!--End Scoll Top-->
+
+
+    <!--End Quick View popup-->
+
+     <!-- Including Jquery -->
+     <script src="{% static 'js/vendor/jquery-3.3.1.min.js'%}"></script>
+     <script src="{% static 'js/vendor/modernizr-3.6.0.min.js'%}"></script>
+     <script src="{% static 'js/vendor/jquery.cookie.js'%}"></script>
+     <script src="{% static 'js/vendor/wow.min.js' %}"></script>
+     <!-- Including Javascript -->
+     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'js/plugins.js' %}"></script>
+     <script src="{% static 'js/popper.min.js' %}"></script>
+     <script src="{% static 'js/lazysizes.js'%}"></script>
+     <script src="{% static 'js/main.js'%}"></script>
+
+</div>
