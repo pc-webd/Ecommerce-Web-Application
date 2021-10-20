@@ -32,7 +32,7 @@ urlpatterns=[
     path('refund/', views.refund, name='refund'),   
     path('search/', views.search,name='search'),
     path('token/',views.token,name='token'),
-    path('verify/<auth_token>',views.verify_user),
+    path('verify/<auth_Token>',views.verify_user),
     path('success_verified_user/',views.success_verified),
     path('forgot_psw/',views.forgot_psw,name='forgot_psw'),
     path('change_psw/<reset_psw_token>',views.change_psw)

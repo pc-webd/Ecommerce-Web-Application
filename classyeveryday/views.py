@@ -646,7 +646,7 @@ class UserFormView(View):
             profile_opj.save()
             send_mail_after_registration(email,auth_token)
             return redirect("/classyeveryday/token/")
-
+            
             # check the username and password in the database
             user = authenticate(username=username, password=password)
 
@@ -676,12 +676,12 @@ def send_mail_after_registration(email,token):
     receipent_list=[email]
     send_mail(subject,message,email_from,receipent_list)
 
-def verify_user(request,auth_token):
+def verify_user(request,auth_Token):
     try:
-        profile_obj=UserProfile.objects.filter(auth_token=auth_token).first()
+        profile_obj=UserProfile.objects.filter(auth_token=auth_Token).first()
         if profile_obj:
-            UserProfile.is_verified=True
-            UserProfile.save()
+            profile_obj.is_verified=True
+            profile_obj.save()
             messages.success(request,'Your Accounts Has been Verified ')
             return redirect("/classyeveryday/success_verified_user/")
         else:
@@ -689,6 +689,7 @@ def verify_user(request,auth_token):
 
     except Exception as e:
         print(e)
+     
 
 def success_verified(request):
     return render(request,'classyeveryday/success_email.html')
